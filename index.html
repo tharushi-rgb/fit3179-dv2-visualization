@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Melbourne's Cafe and Restaurant Density: Post-Pandemic Growth and Turnover
+      (2021-2023)
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@2.1.0/build/pure-min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>
+          Melbourne's Cafe and Restaurant Density: Post-Pandemic Growth and
+          Turnover (2021-2023)
+        </h1>
+        <p>
+          Discover how Melbourne's cafe and restaurant scene grew denser in key
+          areas after COVID-19. Using national turnover data and local venue
+          locations, we highlight density hotspots and economic recovery. Scroll
+          to see how areas like the CBD boomed.
+        </p>
+        <p>
+          Data sources:
+          <a
+            href="https://www.abs.gov.au/statistics/industry/retail-and-wholesale-trade/retail-trade-australia/latest-release#data-downloads"
+            >ABS Retail Trade</a
+          >
+          (authors: ABS, relevance: National turnover for cafes/restaurants;
+          trimmed to 2021-2023).
+          <a
+            href="https://data.melbourne.vic.gov.au/explore/dataset/cafes-and-restaurants-with-seating-capacity"
+            >City of Melbourne Venues</a
+          >
+          (authors: City of Melbourne, relevance: Local venues with geo-data;
+          trimmed to 2021-2023). Geo boundaries from
+          <a
+            href="https://discover.data.vic.gov.au/dataset/small-areas-for-census-of-land-use-and-employment-clue"
+            >Vic Gov Data</a
+          >. Created by [Your Name], October 2025.
+        </p>
+      </header>
+
+      <section>
+        <h2>Density Hotspots Across Melbourne Areas</h2>
+        <p>
+          This choropleth map colors areas by venue count (darker = denser).
+          Filter by year to see growth (e.g., CBD density surge post-2021).
+          Hover for counts.
+        </p>
+        <div id="vis-map"></div>
+      </section>
+
+      <section>
+        <h2>Turnover Trends in Dining</h2>
+        <p>
+          National spending on cafes and takeaways climbed, mirroring
+          Melbourne's recovery. Peaks in 2023 show booming demand.
+        </p>
+        <div id="vis-line"></div>
+      </section>
+
+      <section>
+        <h2>Correlating Growth and Spending</h2>
+        <p>
+          Scatterplot shows yearly venue counts vs. turnover—stronger
+          correlation in later years as density grew with spending.
+        </p>
+        <div id="vis-scatter"></div>
+      </section>
+
+      <section>
+        <h2>Venue Types by Key Areas</h2>
+        <p>
+          Stacked bars break down industry types (e.g., cafes vs. pubs) in top
+          dense areas. Compare how CBD favors restaurants.
+        </p>
+        <div id="vis-stacked-bar"></div>
+      </section>
+
+      <footer>
+        <p>
+          Insights: Density doubled in CBD from 2021-2023, tied to turnover
+          recovery. Interactive map uses choropleth for easy hotspot spotting;
+          other idioms reveal trends and breakdowns.
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      vegaEmbed("#vis-map", "vega/map.json");
+      vegaEmbed("#vis-line", "vega/line.json");
+      vegaEmbed("#vis-scatter", "vega/scatter.json");
+      vegaEmbed("#vis-stacked-bar", "vega/stacked_bar.json");
+    </script>
+  </body>
+</html>
