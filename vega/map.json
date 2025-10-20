@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Venue Density by Area (2021-2023)",
+  "width": "container",
+  "height": 400,
+  "data": {
+    "url": "../data/clue_areas.geojson"
+  },
+  "transform": [
+    {
+      "lookup": "properties.featurenam",
+      "from": {
+        "data": { "url": "../data/venues.csv" },
+        "key": "CLUE small area",
+        "fields": ["CLUE small area"]
+      },
+      "as": "area_match"
+    },
+    {
+      "aggregate": [{ "op": "count", "as": "venue_count" }],
+      "groupby": ["properties.featurenam"]
+    },
+    { "filter": { "param": "yearFilter" } }
+  ],
+  "projection": { "type": "identity", "reflectY": true },
+  "mark": "geoshape",
+  "encoding": {
+    "color": {
+      "field": "venue_count",
+      "type": "quantitative",
+      "scale": { "scheme": "blues" }
+    },
+    "tooltip": [
+      { "field": "properties.featurenam", "type": "nominal", "title": "Area" },
+      { "field": "venue_count", "type": "quantitative", "title": "Venue Count" }
+    ]
+  },
+  "params": [
+    {
+      "name": "yearFilter",
+      "select": { "type": "point", "fields": ["Census year"] },
+      "bind": { "input": "select", "options": [2021, 2022, 2023] }
+    }
+  ]
+}

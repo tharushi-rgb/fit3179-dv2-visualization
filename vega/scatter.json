@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Venue Count vs. Turnover by Year",
+  "width": "container",
+  "height": 300,
+  "data": { "url": "../data/venues.csv" },
+  "transform": [
+    {
+      "aggregate": [{ "op": "count", "as": "venue_count" }],
+      "groupby": ["Census year"]
+    },
+    {
+      "lookup": "Census year",
+      "from": {
+        "data": { "url": "../data/retail_turnover.csv" },
+        "key": "Unnamed: 0",
+        "fields": [
+          "Turnover ;  Total (State) ;  Cafes, restaurants and takeaway food services ;"
+        ]
+      },
+      "as": "turnover"
+    }
+  ],
+  "mark": "circle",
+  "encoding": {
+    "x": { "field": "venue_count", "type": "quantitative" },
+    "y": { "field": "turnover", "type": "quantitative" },
+    "color": { "field": "Census year", "type": "nominal" },
+    "size": { "field": "venue_count", "type": "quantitative" },
+    "tooltip": [
+      { "field": "Census year", "type": "temporal" },
+      { "field": "venue_count", "type": "quantitative" },
+      { "field": "turnover", "type": "quantitative" }
+    ]
+  }
+}

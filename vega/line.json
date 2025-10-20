@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Cafe/Takeaway Turnover Trends",
+  "width": "container",
+  "height": 300,
+  "data": { "url": "../data/retail_turnover.csv" },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": { "field": "Unnamed: 0", "type": "temporal", "title": "Date" },
+        "y": {
+          "field": "Turnover ;  Total (State) ;  Cafes, restaurants and takeaway food services ;",
+          "type": "quantitative",
+          "title": "Turnover ($M)"
+        },
+        "color": { "value": "blue" },
+        "tooltip": [
+          { "field": "Unnamed: 0", "type": "temporal" },
+          {
+            "field": "Turnover ;  Total (State) ;  Cafes, restaurants and takeaway food services ;",
+            "type": "quantitative"
+          }
+        ]
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "x": { "field": "Unnamed: 0", "type": "temporal", "title": "Date" },
+        "y": {
+          "field": "Turnover ;  Total (State) ;  Cafes, restaurants and takeaway food services ;.1",
+          "type": "quantitative",
+          "title": "Seasonally Adjusted ($M)"
+        },
+        "color": { "value": "green" }
+      }
+    }
+  ]
+}

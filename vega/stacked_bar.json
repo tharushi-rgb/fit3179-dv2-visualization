@@ -1,0 +1,21 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Venue Types by Area",
+  "width": "container",
+  "data": { "url": "../data/venues.csv" },
+  "mark": "bar",
+  "encoding": {
+    "x": { "field": "CLUE small area", "type": "nominal", "title": "Area" },
+    "y": { "aggregate": "count", "title": "Count" },
+    "color": {
+      "field": "Industry (ANZSIC4) description",
+      "type": "nominal",
+      "title": "Type"
+    },
+    "tooltip": [
+      { "field": "CLUE small area", "type": "nominal" },
+      { "aggregate": "count", "title": "Count" },
+      { "field": "Industry (ANZSIC4) description", "type": "nominal" }
+    ]
+  }
+}
